@@ -15,7 +15,8 @@ char ft_alpha_m(char *str)
 
     i = 0;
     while(str[i] != '\0')
-    {
+    {   //need to remember the order of operations for the statements;
+        //gives predence to the - and then the +
         if (str[i] >= 'A' && str[i] <= 'Z')
             ft_putchar('Z' - str[i] + 'A');
         else if (str[i] >= 'a' && str[i] <= 'z')
