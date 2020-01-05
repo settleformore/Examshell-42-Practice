@@ -1,30 +1,41 @@
 #include <unistd.h>
 
-int		ft_times(char c)
+void ft_putchar(char c)
 {
-	if ( c >= 'a' && c <= 'z')
-		return(c - 96);
-	if (c >= 'A' && c <= 'Z')
-		return(c - 64);
-	return(1);
+	write(1, &c, 1);
 }
 
-void	ft_multiwrite(char str)
+void num(char c)
 {
-	int k;
-	k = -1;
+	int i = c;
+	if (i >= 'a' && i <= 'z')
+		i = i - 96;
+	if (i >= 'A' && i <= 'Z')
+		i = i - 64;
+	while (i--)
+		ft_putchar(c);
+}
 
-	while(++k < ft_times(str))
-		write(1, &str, 1);			
+void repeat(char *str)
+{
+	int i = -1;
+
+	while(str[++i])
+	{
+		if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))
+		{
+			num(str[i]);
+		}
+		else
+			ft_putchar(str[i]);
+	}
 }
 
 int main(int argc, char **argv)
 {
-	int i;
-
-	i = -1;
 	if (argc == 2)
-		while(argv[1][++i])
-			ft_multiwrite(argv[1][i]);
-	write(1, "\n", 1);
+	{
+		repeat(argv[1]);
+	}
+	write(1, "\n", 1);	
 }
